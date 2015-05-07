@@ -1,0 +1,97 @@
+// *************************************
+//
+//   Summary
+//   -> description.
+//
+// *************************************
+
+.summary
+  display: block
+  padding-top: $spacing-unit
+
+  h1, p, blockquote
+    // maring: 0
+
+.summary + .summary
+  border-top: 1px solid $grey-color-light
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+.summary-title
+  display: block
+  padding: 0 2em
+  margin: 0
+  text-align: center
+
+.summary-title a
+  display: inline-block
+  font-size: $base-font-size * 2
+  font-family: $fontFamilySerif
+  color: $text-color
+  line-height: $spacing-unit * 2
+  border-bottom: none
+
+  &:hover
+    text-decoration: none
+  &:active,
+  &:visited,
+    color: $text-color
+
+.summary-title a
+  position: relative
+  cursor: pointer
+  &:before,
+  &:after
+    transition: all 0.3s
+    display:inline-block
+    position: absolute
+    font-family: $fontFamilyCode
+    opacity: 0
+    color: $grey-color
+    font-size: 0.5em
+
+  &:before
+    content: '->{ '
+    left: -3em
+    transform: translateX(-2em)
+
+  &:after
+    content: ' }'
+    right: -2em
+    transform: translateX(2em)
+
+  &:hover
+    &:after,
+    &:before
+      opacity: 1
+      transform: translateX(0)
+
+.summary-date
+  display: block
+  text-align: center
+  color: #aaa
+  font-family: $fontFamilyCode
+  font-weight: 200
+
+.summary-content
+  display: block
+  padding-bottom: $spacing-unit
+

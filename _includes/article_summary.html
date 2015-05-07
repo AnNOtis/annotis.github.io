@@ -1,0 +1,15 @@
+<article class="summary">
+  <div class="wrapper">
+    <h1 class="title summary-title" >
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </h1>
+    <div class="summary-date">{{ post.date | date: "%b %-d, %Y" }}</div>
+    <div class="summary-content">
+      {% if post.content contains '<!--more-->' %}
+        {{ post.content | split:'<!--more-->' | first }}
+      {% else %}
+        {{ post.excerpt }}
+      {% endif %}
+    </div>
+  </div>
+</article>

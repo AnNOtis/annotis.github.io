@@ -4,18 +4,23 @@
 @charset "utf-8";
 
 
+$fontFamilySansSerif: "Open Sans", helvetica, arial, "Heiti TC", "Microsoft YaHei", sans-serif;
+$fontFamilySerif: Georgia, Cambria, "Times New Roman", Times, "Hiragino Sans GB", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", serif;
+$fontFamilyContent: $fontFamilySerif;
+$fontFamilyCode: "Source Code Pro", monospace;
 
 // Our variables
-$base-font-family: Helvetica, Arial, sans-serif;
+$base-font-family: $fontFamilyContent;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
-$base-line-height: 1.5;
+$base-line-height: 1.8;
 
-$spacing-unit:     30px;
+$spacing-unit:     $base-font-size * $base-line-height;
 
-$text-color:       #111;
+
+$text-color:       #333;
 $background-color: #fdfdfd;
-$brand-color:      #2a7ae2;
+$brand-color:      #1646C2;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
@@ -48,5 +53,8 @@ $on-laptop:        800px;
 @import
         "base",
         "layout",
-        "syntax-highlighting"
+        "syntax-highlighting",
+        'layouts/header',
+        'components/logo',
+        'components/summary'
 ;
