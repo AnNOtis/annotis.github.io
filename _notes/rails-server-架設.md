@@ -65,3 +65,12 @@ ssh-keygen -t rsa -b 2048
 sudo locale-gen zh_TW.UTF-8
 sudo dpkg-reconfigure locales
 ```
+
+## Nginx & Passenger
+
+```
+gem install passenger
+```
+
+
+/home/deploy/.rbenv/versions/2.2.0/bin/ruby
