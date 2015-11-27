@@ -3,7 +3,9 @@ layout: post
 title: "[筆記] What is Interaction Design?"
 date:  2015-11-24 16:50:18 +0800
 tags:
-categories: notes
+  - Design
+categories:
+  - Notes
 ---
 原文鏈結: [Complete Beginners Guide to Interaction Design]
 

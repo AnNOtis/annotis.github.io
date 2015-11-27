@@ -2,8 +2,8 @@
 layout: post
 title: Hello Rack
 date: 2014-10-10 10:59 UTC
-tags: Ruby
-categories: jekyll update
+tags:
+  - Ruby
 ---
 
 從[官網](http://rack.github.io/)的介紹中提到:
@@ -16,7 +16,7 @@ categories: jekyll update
 
 [Rack支援的server列表](https://github.com/rack/rack)
 
-##第一個Rack application
+## 第一個Rack application
 使用Rack很容易就可以完成一個簡單的web application，官方的文件中寫到：
 
 > The Rack application is an object that responds to the call method, taking the environment hash as a parameter, and returning an Array with three elements: status, headers and a body
@@ -88,7 +88,7 @@ Rack::Handler::WEBrick.run RackApp.new
 
 作為練習，要來做一個稍微有點功能的應用程式啦，需求是這樣的，我可以下http://locahost:8080/request_method，去查詢該environemtn的參數，如果沒有子路徑的話，就回傳所有參數，回傳的參數必須要用html的table顯示（比較好看 :D），無此參數就回傳“查無結果”。
 
-###STEP
+### STEP
 1. 寫一個 *convert_hash_to_table* 的方法
 2. 將 *"Content-Type" => "text/plain"* 改為 *text/html*
 3. 找到路徑 *env['REQUEST_PATH']*
@@ -136,7 +136,7 @@ Rack::Handler::WEBrick.run RackApp.new
 基本的rack就是這樣啦，下個相關的研究議題 **什麼是Rack Middleware?**、**Rails中的Rack Middleware**，改天介紹。
 
 
-##參考資料
+## 參考資料
 - [Rack官網](http://rack.github.io/)
 - [RailsCast 151-Rack-middleware](http://asciicasts.com/episodes/151-rack-middleware)
 - [Rack app with uri and HTTP specific responses](https://github.com/rack/rack/wiki/Rack-app-with-uri-and-HTTP-specific-responses)
