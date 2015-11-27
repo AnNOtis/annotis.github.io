@@ -36,26 +36,23 @@ a.logo
   -o-animation: walk-left 2s infinite linear
   animation: walk-left 2s infinite linear
 
-.logo:before
+.logo:before, .logo:after
   content: ""
   position: absolute
+  width: 60%
+  height: 60%
+  opacity: 0.8
+
+.logo:before
   top: 0%
   left: 0%
-  width: 75%
-  height: 75%
   background-color: #ffcc00
-  opacity: 0.8
   border: 0.2em solid #111111
 
 .logo:after
-  content: ""
-  position: absolute
   top: 50%
   left: 50%
-  width: 75%
-  height: 75%
   background-color: #1646c2
-  opacity: 0.8
   border: 0.2em solid #111111
 
 @-webkit-keyframes walk-right
