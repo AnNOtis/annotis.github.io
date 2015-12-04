@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[筆記] 什麼是互動設計？"
+title: "什麼是互動設計？"
 date:  2015-11-24 16:50:18 +0800
 tags:
   - Design

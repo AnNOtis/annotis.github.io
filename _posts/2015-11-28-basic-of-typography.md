@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[筆記]字型排版中的名詞解釋"
+title: "字型排版中的名詞解釋"
 date:  2015-11-28 15:44:06 +0800
 tags:
   - Typography
