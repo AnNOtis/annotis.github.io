@@ -13,7 +13,7 @@ categories:
 
 ## 身體各部位
 
-![anatomy](/images/basic-of-typography/anatomy.png)
+![anatomy][image/anatomy]
 
 **Ascender**： 字體的上端，如：_b, d, h, l, t, k_
 **Descender**： 字體的下端，如：_j, q, g_
@@ -62,3 +62,6 @@ categories:
 
 [Thinking with Type]: http://www.thinkingwithtype.com
 [Typography Essentials]: http://freelancefolder.com/typography-essentials-a-getting-started-guide
+
+
+[image/anatomy]: https://raw.githubusercontent.com/AnNOtis/annotis.github.io/e372558f003fe9951d19859bcf3df29c3c66bb0c/images/basic-of-typography/anatomy.png
