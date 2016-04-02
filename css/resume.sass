@@ -1,0 +1,35 @@
+---
+---
+// @import 'basic/normalize'
+// @import 'font-awesome-sprockets'
+// @import 'font-awesome'
+@import 'resume/_variables'
+@import 'resume/header'
+@import 'resume/components'
+@import 'resume/section'
+@import 'resume/skill'
+
+*,
+*:after,
+*:before
+  box-sizing: border-box
+
+body
+  font-family: $font-family-content
+  margin: 0
+  font-size: 16px
+  color: #333
+  line-height: 1.6
+
+h1, h2, h3, h4
+  margin-top: 0
+  margin-bottom: 0
+
+#content
+  +block-center($content-width)
+  display: block
+  margin-bottom: bu(4)
+  @media print
+    margin-bottom: 0
+  +on-mobile
+    width: auto

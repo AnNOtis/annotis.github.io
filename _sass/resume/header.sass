@@ -1,0 +1,98 @@
+#header
+  +block-center($content-width)
+  display: block
+  overflow: auto
+  margin-top: bu()
+  margin-bottom: bu(2)
+  #left-block
+    display: block
+    position: relative
+    width: $content-width * 7/10
+    padding-left: bu()
+    padding-right: bu()
+    padding-top: bu()
+    padding-bottom: 15px
+    float: left
+    background-color: $c-main
+    font-family: $font-family-sans-serif
+    @media print
+      -webkit-print-color-adjust: exact
+    .name
+      color: #FDFDFD
+      font-size: 32px
+      line-height: 1
+    .title
+      font-size: $font-size-m
+      font-weight: normal
+      font-family: $font-family-code
+      color: $c-grey-light
+    .operation-bar
+      display: inline-block
+      position: absolute
+      bottom: bu(0.5)
+      right: bu(0.5)
+      @media print
+        display: none
+      .download, .print-button, a.download, a.print-button
+        display: inline-block
+        padding: 0 10px
+        margin-left: 3px
+        margin-right: 3px
+        border-radius: 3px
+        background-color: rgba(255, 255, 255, 0.1)
+        opacity: 0.7
+        color: #FFF
+        line-height: 30px
+        text-decoration: none
+        cursor: pointer
+        &:hover
+          transition: opacity 0.3s
+          opacity: 1
+  #right-block
+    display: block
+    width: $content-width * 3/10
+    float: right
+    .info
+      list-style: none
+      padding: 0
+      padding-left: 12px
+      margin: 0
+      .info-item
+        color: $c-grey
+        font-family: $font-family-sans-serif
+        a
+          color: $c-grey
+          text-decoration: none
+        .fa
+          width: 20px
+          text-align: center
+          color: $c-main
+
++on-mobile
+  #header
+    width: auto
+    margin-top: 0
+    margin-bottom: 0
+    #left-block
+      width: auto
+      float: none
+      padding-top: 30px
+      padding-bottom: 15px
+      border-bottom: 4px solid darken($c-main, 5)
+      .operation-bar
+        display: none
+    #right-block
+      position: absolute
+      top: 0
+      right: 0
+      width: auto
+      float: none
+      .info
+        padding: 15px
+        padding-right: 30px
+        background-color: transparent
+        font-size: 12px
+        .info-item
+          color: $c-grey-light
+          a
+            color: $c-grey-light
