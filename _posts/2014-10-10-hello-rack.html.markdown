@@ -10,18 +10,18 @@ tags:
 
 > Rack provides a minimal interface between webservers supporting Ruby and Ruby frameworks.
 
-在開發 Ruby web framewrok 時有許多前置工作，必須對所支援的 web server 撰寫介面，然後 parse http protocol，假如多支援一套 web server 這些工作又要再做一次，Rack 幫我們解決了重複性的工作，Rack 支援不同的 server，將 http request 與 response 包裝後，成為統一的API標準，不管 web server 是 WEBrick 、 Mongrel 或是 Unicorn ，web framework 都只需要對 Rack 溝通就行了，就像是如果要馬上精通各國語言(web server)，吃個翻譯蒟蒻就萬事OK，Rack就是翻譯蒟蒻!!!
+在開發 Ruby Web Framewrok 時有許多前置工作，必須對所支援的 Web Server 撰寫介面，然後解析 HTTP protocol，假如多支援一套 Web Server 這些工作又要再做一次，Rack 幫我們解決了重複性的工作，Rack 支援不同的 Server，將 HTTP request 與 response 包裝後，成為統一的 API 標準，不管 Web Server 是 WEBrick 、 Mongrel 或是 Unicorn ，Web Framework 都只需要對 Rack 溝通就行了，就像是如果要馬上精通各國語言（Web Server），吃個翻譯蒟蒻就萬事OK，Rack就是翻譯蒟蒻!!!
 
 <!--more-->
 
 [Rack支援的server列表](https://github.com/rack/rack)
 
-## 第一個Rack application
-使用 Rack 很容易就可以完成一個簡單的 web application，官方的文件中寫到：
+## 第一個 Rack application
+使用 Rack 很容易就可以完成一個簡單的 Web Application，官方的文件中寫到：
 
 > The Rack application is an object that responds to the call method, taking the environment hash as a parameter, and returning an Array with three elements: status, headers and a body
 
-舉例來說，這就是一個簡單的 Rack application
+舉例來說，這就是一個簡單的 Rack Application
 
 {% highlight ruby %}
 require "rack" # Core Ruby Lib doesn't include Rack
@@ -43,17 +43,17 @@ Rack::Handler::WEBrick.run HelloRack.new
 
 ## Response
 
-實際上畫面的回應是來自於 `call` 這個方法的回傳值，回傳值在Rack的spec定義必須是一個 `Array` :
+實際上畫面的回應是來自於 `call` 這個方法的回傳值，Rack 的文件中定義回傳值必須是一個 `Array` :
 
 {% highlight ruby %}
 [ Status Code, Http Header, Response body ]
 {% endhighlight %}
 
-- **Status code**: 可以指定200, 400, 302等
-- **Http headers**: http的標頭，型態需為hash，hash的內容至少要指定content-type，例：{"Content-Type" => "text/html"}
-- **Response body**: 回傳的內容，此物件必須能夠回應each這個方法，使用array就可以了，如果他有多個Response body則會由第一個元素開始輸出。
+- **Status code**: 可以指定 200, 400, 302 等
+- **Http headers**: HTTP 的標頭，型態需為 `hash`，`hash` 的內容至少要指定 `content-type`，例：`{"Content-Type" => "text/html"}`
+- **Response body**: 回傳的內容，此物件必須能夠回應 `each` 這個方法（使用 array 就可以了），如果他有多個 response body 則會由第一個元素開始輸出。
 
-所以如果 call 回傳的是像這樣的內容：
+所以如果 `call` 回傳的是像這樣的內容：
 
 {% highlight ruby %}
 [ 200, {"Content-Type" => "text/plain"}, ["Hello Rack!"] ]

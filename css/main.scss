@@ -5,10 +5,11 @@
 
 
 $fontFamilySansSerif: "Open Sans", helvetica, arial, "Heiti TC", "Microsoft YaHei", sans-serif;
-$fontFamilySerif: Georgia, Cambria, "Times New Roman", Times, "Hiragino Sans GB", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", serif;
+$fontFamilySerif: "Times New Roman", Times, "Hiragino Sans GB", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", serif;
 $fontFamilyContent: $fontFamilySerif;
 $fontFamilyCode: "Source Code Pro", monospace;
-$fontFamilyMono: "Cutive Mono", monospace;
+$fontFamilyMono: "Lato", monospace;
+$fontFamilyQuote: $fontFamilyMono;
 $fontFamilyDate: $fontFamilyMono;
 
 // Our variables

@@ -225,6 +225,7 @@
 .post-content {
     margin-top: $spacing-unit * 2;
     margin-bottom: $spacing-unit;
+    word-break: break-word;
     h1,h2,h3,h4{
         position: relative;
         .post-anchor{

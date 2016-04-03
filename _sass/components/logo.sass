@@ -14,15 +14,18 @@ a.logo
   width: 110px
   left: 0
   top: 0
-  font-family: $fontFamilyCode
+  font-family: $fontFamilyMono
   font-size: 14px
-  color: #333333
+  color: #777
   opacity: 0
+  letter-spacing: 4px
   transition: all 0.4s
 
 .logo:hover .logo-subtitle
+  text-align: left
   left: 50px
   opacity: 1
+  letter-spacing: 0
 
 .logo:hover:before
   -webkit-animation: walk-right 2s infinite linear
@@ -39,8 +42,8 @@ a.logo
 .logo:before, .logo:after
   content: ""
   position: absolute
-  width: 60%
-  height: 60%
+  width: 59%
+  height: 59%
   opacity: 0.8
 
 .logo:before
