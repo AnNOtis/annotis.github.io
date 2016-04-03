@@ -60,6 +60,7 @@ Rack::Handler::WEBrick.run HelloRack.new
 {% endhighlight %}
 
 打開 chrome console 來看：
+
 ![Rack Response][2]
 
 就是這樣囉～
