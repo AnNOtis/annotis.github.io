@@ -100,9 +100,8 @@ blockquote
   font-size: 16px
   line-height: 1.4
   letter-spacing: -1px
-  font-style: italic
-  font-family: $fontFamilyCode
-  font-weight: 200
+  // font-style: italic
+  font-family: $fontFamilyMono
 
   > :last-child
     margin-bottom: 0
@@ -116,20 +115,22 @@ blockquote
  */
 pre,
 code
-  font-size: 15px
-  border: 1px solid $grey-color-light
-  border-radius: 3px
-  background-color: #FFFFFA
+  background-color: #FAFAFA
   font-family: $fontFamilyCode
+  font-size: $small-font-size
 
 code
   padding: 1px 5px
-
+  border-radius: 5px
+  border: 1px solid #EEE
+  color: HSL(17, 100%, 37%)
+  vertical-align: top
 pre
   padding: 8px 12px
   overflow-x: scroll
-
+  border: 2px solid #EEE
   > code
+    font-size: $small-font-size
     border: 0
     padding-right: 0
     padding-left: 0
