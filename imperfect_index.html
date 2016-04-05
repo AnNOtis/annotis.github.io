@@ -1,0 +1,15 @@
+---
+layout: imperfect
+permalink: /imperfect
+---
+
+<div class="page-content">
+  <div class="wrapper">
+    <div class="home">
+      {{site.collections}}
+      {% for post in site.imperfects %}
+        {% include article_summary.html post=post %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

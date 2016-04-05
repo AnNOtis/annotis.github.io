@@ -3,7 +3,7 @@ title: Otis Blog
 email: altispec@gmail.com
 description: "Thoughts on Ruby, Javascript, CSS, Design and more..."
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://blog.otisready.com" # the base hostname & protocol for your site
+url: "http://otischou.tw" # the base hostname & protocol for your site
 twitter_username:
 github_username:  AnNOtis
 
@@ -13,3 +13,8 @@ highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+
+collections:
+  imperfect:
+    description: 生人勿近
+    permalink: /imperfect/:path/
