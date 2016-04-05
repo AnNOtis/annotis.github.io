@@ -4,11 +4,7 @@ permalink: /imperfect/
 ---
 
 <div class="page-content">
-  <div class="wrapper">
-    <div class="home">
-      {% for post in site.imperfect %}
-        {% include article_summary.html post=post %}
-      {% endfor %}
-    </div>
-  </div>
+  {% for post in site.imperfect %}
+    {% include article_summary.html post=post %}
+  {% endfor %}
 </div>
