@@ -16,5 +16,7 @@ kramdown:
 
 collections:
   imperfect:
+    label: imperfect
     description: 生人勿近
     permalink: /imperfect/:path/
+    output: true
