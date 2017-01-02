@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "圖片到底載入了沒？"
-date:  2016-01-01 21:05:00 +0800
+date:  2017-01-01 21:05:00 +0800
 tags:
   - JavaScript
 categories:
@@ -26,7 +26,7 @@ image.src = 'https://www.google.com/favicon.ico'
 
 上方的程式碼在 https://www.google.com/favicon.ico 載入成功（status < 400）時，就會執行 `onload` 所設定的函式。
 
-值得注意的是 `image.onload = ` 的敘述語句**必須**放在 `image.src =` 之前，如果寫為下方的形式。
+值得注意的是 `image.onload = ` 的敘述語句**必須**放在 `image.src =` 之前，如果寫為下方的形式：
 
 ```js
 image.src = 'https://www.google.com/favicon.ico'
@@ -63,11 +63,11 @@ console.log(preloadedImage.complete)
 // => true: 已經載入, false: 未載入
 ```
 
-> 值得注意的是，`complete` 屬性在 IE9 上才開始支援，IE8 以下的話，則必須在圖片載入的那一刻，自行記錄該圖片已經被載入了。
+值得注意的是，`complete` 屬性在 IE9 上才開始支援，IE8 以下的話，則必須在圖片載入的那一刻，自行記錄該圖片已經被載入了。
 
 ## 圖片載入函式
 
-在實際的應用當中，我們可以寫一個函式，同時適應上述兩個情境，方便在各個地方複用。
+在實際的應用當中，我們可以寫一個函式，同時適應上述「圖片上尚未載入」以及「圖片已經載入」兩個情境，方便在各個地方複用。
 
 ```js
 function onImageLoaded(url, cb) {
