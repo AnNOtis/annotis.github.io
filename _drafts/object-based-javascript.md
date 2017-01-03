@@ -8,12 +8,12 @@ categories:
 ---
 
 
-
 ## 參考資料
 - [JS Objects](https://davidwalsh.name/javascript-objects) - _Kyle Simpson_
 - [Understanding "Prototypes" in JavaScript](http://yehudakatz.com/2011/08/12/understanding-prototypes-in-javascript) - _[Yehuda Katz]_
 - [Introduction to Object-Oriented JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript) - _[MDN]_
 - [Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) - _[MDN]_
+- [Chapter 5: Prototypes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md) - _[You Dont Know JS: this & Object Prototypes]_
 
 [Yehuda Katz]: https://github.com/wycats
 [MDN]: https://developer.mozilla.org/en-US/
