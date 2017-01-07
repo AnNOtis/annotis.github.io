@@ -15,14 +15,14 @@ categories:
 
 ![anatomy][image/anatomy]
 
-**Ascender**： 字體的上端，如：_b, d, h, l, t, k_
-**Descender**： 字體的下端，如：_j, q, g_
-**Counter**： 中空的部分，如：_O, o, P, p, D_
+- **Ascender**： 字體的上端，如：_b, d, h, l, t, k_
+- **Descender**： 字體的下端，如：_j, q, g_
+- **Counter**： 中空的部分，如：_O, o, P, p, D_
 
-**Baseline**： 字體會倚靠在 baseline 上，也是與其他文字或圖片排版所依據的基礎
-**X-Height**： 是小寫字不包含 ascender 與 descender 的本體高度，也是小寫 x 的高度
-**Cap Height**： 從 baseline 到大寫字母最上緣的高度，也用來決定一個字的大小
-**Descender Height**： descender 的長度，會影響字體的風格與姿態
+- **Baseline**： 字體會倚靠在 baseline 上，也是與其他文字或圖片排版所依據的基礎
+- **X-Height**： 是小寫字不包含 ascender 與 descender 的本體高度，也是小寫 x 的高度
+- **Cap Height**： 從 baseline 到大寫字母最上緣的高度，也用來決定一個字的大小
+- **Descender Height**： descender 的長度，會影響字體的風格與姿態
 
 ## 字體大小
 
@@ -49,11 +49,11 @@ categories:
 
 ## Type Families
 
-**Regular**: 一般的形式，是其他家族的來源。
-**Italic**: 斜體字，用來強調，形狀與筆畫常常會跟 regular 不同。
-**Small Caps**: 用來放在大寫字排版會很不方便的一行文字，小型的大寫字會稍稍高於小寫字的 x-height
-**Bold and Semibold**: 用來強調，無襯線字體通常會有不同權重的的版本（thin, bold, black, etc.）
-**Bold and Italic**: 粗體同樣也有斜體的版本
+- **Regular**: 一般的形式，是其他家族的來源。
+- **Italic**: 斜體字，用來強調，形狀與筆畫常常會跟 regular 不同。
+- **Small Caps**: 用來放在大寫字排版會很不方便的一行文字，小型的大寫字會稍稍高於小寫字的 x-height
+- **Bold and Semibold**: 用來強調，無襯線字體通常會有不同權重的的版本（thin, bold, black, etc.）
+- **Bold and Italic**: 粗體同樣也有斜體的版本
 
 ## 參考資料
 
