@@ -18,9 +18,9 @@ var myObject = {}
 myObject.toString() // => "[object Object]"
 ```
 
-`myObject` 是一個空物件，他呼叫一個 `toString` 的方法，如果你曾經疑惑 `myObject` 是一個空物件，`toString` 方法從哪裡來？那你已經踏入暸解 Prototype 的第一步。
+`myObject` 是一個空物件，他呼叫一個 `.toString()` 的方法，如果你曾經疑惑 `myObject` 分明是一個空物件，`toString` 方法從哪裡來？那你已經踏入暸解 Prototype 的第一步。
 
-實際上 toString 存在於 Object.prototype 這個物件上
+實際上 `toString` 存在於另一個物件上，
 
 ## 參考資料
 - [JS Objects](https://davidwalsh.name/javascript-objects) - _Kyle Simpson_
