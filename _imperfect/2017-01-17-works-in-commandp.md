@@ -1,6 +1,6 @@
 ---
-layout: post
 title: 我印經歷
+layout: imperfect_post
 date: 2017-01-17 19:09:21 +0800
 tags:
 
