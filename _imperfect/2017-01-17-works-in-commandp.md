@@ -7,6 +7,8 @@ tags:
 category:
 ---
 
+以下是我在我印的經歷：
+
 ## 我印編輯器 JavaScript SDK
 
 > 2016/07 - present
