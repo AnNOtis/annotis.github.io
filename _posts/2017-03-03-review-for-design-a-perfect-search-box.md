@@ -8,7 +8,8 @@ categories:
   - Notes
 ---
 
-原文: https://uxplanet.org/design-a-perfect-search-box-b6baaf9599c
+原文：[Design a Perfect Search Box - *Nick Babich*](https://uxplanet.org/design-a-perfect-search-box-b6baaf9599c
+)
 
 在側重內容的網站，搜尋欄是必要的頁面元素，作者總結了 9 項最佳實踐。
 
