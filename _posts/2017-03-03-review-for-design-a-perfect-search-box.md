@@ -4,7 +4,8 @@ title: "[筆記] Design a Perfect Search Box"
 date: 2017-03-03 18:54:20 +0800
 tags:
   - Design
-category:
+categories:
+  - Notes
 ---
 
 原文: https://uxplanet.org/design-a-perfect-search-box-b6baaf9599c
@@ -47,6 +48,7 @@ category:
 - 太長，沒辦法暗示使用者預期中的搜尋內容應該多長
 
 ### 8. 使用自動完成功能
+
 - 自動完成不是為了加速使用者的輸入，而是為了幫助使用者組織輸入內。因為使用者如果第一次嘗試沒有得到好的搜尋結果，很容易會放棄嘗試。
 - 盡快給出回應，比如說鍵入三個字元就顯示自動完成的結果
 - 顯示少於 10 個結果，並且不要有滾動條
