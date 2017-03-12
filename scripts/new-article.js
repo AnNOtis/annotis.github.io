@@ -53,7 +53,7 @@ title: ${answers.title}
 date: ${time}
 tags:
 ${answers.tags.map(tag => '  - ' + tag).join('\n')}
-category:
+categories:
 ---\n`
 
   const folder = answers.isDraft ? '_drafts' : '_posts'
