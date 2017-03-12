@@ -49,7 +49,7 @@ inquirer.prompt(prompts).then(answers => {
   const content =
 `---
 layout: post
-title: ${answers.title}
+title: "${answers.title}"
 date: ${time}
 tags:
 ${answers.tags.map(tag => '  - ' + tag).join('\n')}

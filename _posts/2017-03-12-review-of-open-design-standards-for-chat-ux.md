@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [筆記] Open Design Standards for Chat UX
+title: "[筆記] Open Design Standards for Chat UX"
 date: 2017-03-12 15:28:51 +0800
 tags:
   - Design
