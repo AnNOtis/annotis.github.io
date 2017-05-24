@@ -4,6 +4,7 @@ title: "[筆記] Design a Perfect Search Box"
 date: 2017-03-03 18:54:20 +0800
 tags:
   - Design
+  - Note
 categories:
   - Notes
 ---

@@ -186,6 +186,39 @@
     }
 }
 
+.post-tags {
+    font-size: $small-font-size;
+    font-family: $fontFamilyDate;
+    color: #BBB;
+    overflow: hidden;
+    text-align: center;
+    margin: 0;
+
+    a {
+      color: #777;
+      border-color: #DDD;
+      cursor: pointer;
+      &:hover {
+        color: #333;
+      }
+      &:active {
+        color: #555;
+      }
+    }
+
+    li {
+      display: inline-block;
+      list-style: none;
+      &:not(:first-child) {
+        &:before {
+          margin: 0 0.5em;
+          content: '/';
+          color: #DDD;
+        }
+      }
+    }
+}
+
 .post-meta {
     font-size: $small-font-size;
     font-family: $fontFamilyDate;
