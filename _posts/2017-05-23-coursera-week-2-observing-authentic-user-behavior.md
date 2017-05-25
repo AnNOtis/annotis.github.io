@@ -15,6 +15,8 @@ categories:
 
 <!--more-->
 
+大綱：
+
 <!-- TOC -->
 
 - [參與觀察 Participant Observation](#參與觀察-participant-observation)
