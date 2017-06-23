@@ -7,9 +7,9 @@ tags:
 categories:
 ---
 
-最近投入函數式語言的使用，發現很多語言（ex. Haskell , Elixir, Scala, Swift）都有提供模式匹配（Pattern Matching），這讓我有些疑問
+最近投入函數式語言的使用，發現很多語言（ex. Haskell , Elixir, Scala, Swift）都有提供模式匹配（Pattern Matching），這讓我有個疑問**「使用模式匹配有什麼好處？」**
 
-**「使用模式匹配有什麼好處？」**
+<!--more-->
 
 大綱：
 
