@@ -7,7 +7,7 @@ tags:
 categories:
 ---
 
-最近投入函數式語言的使用，發現很多語言（ex. Haskell , Elixir, Scala, Swift）都有提供模式匹配（Pattern Matching），這讓我有個疑問**「使用模式匹配有什麼好處？」**
+最近投入函數式語言的學習，發現很多語言（ex. Haskell , Elixir, Scala, Swift）都有提供模式匹配（Pattern Matching），這讓我有個疑問**「使用模式匹配有什麼好處？」**
 
 <!--more-->
 
@@ -18,10 +18,10 @@ categories:
 - [代數型別 Algebraic data type](#代數型別-algebraic-data-type)
 	- [建立一顆樹](#建立一顆樹)
 	- [代數型別小結](#代數型別小結)
-- [勸人向善的 Pattern matching](#勸人向善的-pattern-matching)
 - [比較直覺啊？！](#比較直覺啊)
 	- [自然對應](#自然對應)
 	- [模式匹配與條件判斷](#模式匹配與條件判斷)
+- [勸人向善的模式匹配](#勸人向善的模式匹配)
 - [結論](#結論)
 
 <!-- /TOC -->
@@ -30,7 +30,7 @@ categories:
 
 ### 建立一顆樹
 
-代數型別指的是，能夠**以其他型別組合而成的新的型別**，取自 [Wiki - Algebraic data type] 的例子，要建立一棵樹的型別，我們可以選擇將樹分解為空節點、節點與葉子，在 Haskell 中以下列的方式表示：
+代數型別指的是，能夠**以其他型別組合而成的新的型別**，取自 [Wiki - Algebraic data type](https://en.wikipedia.org/wiki/Algebraic_data_type) 的例子，要建立一棵樹的型別，我們可以選擇將樹分解為空節點、節點與葉子，在 Haskell 中以下列的方式表示：
 
 ```hs
 data Tree = Empty
@@ -90,17 +90,9 @@ print $ depth exampleTree -- 深度為 4
 - <small>[为什么 pattern matching 常常出现在函数式编程语言？](https://www.zhihu.com/question/22344888)</small>
 - <small>[Pattern matching in JavaScript](https://www.bramstein.com/writing/pattern-matching.html)</small>
 
-## 勸人向善的 Pattern matching
-
-Thought 的這篇 ["Tell, Don't Ask" in Elixir: A Story of Pattern-Matching] 也提出不同角度的看法。
-
-文章從「Tell Don't Ask」的原則出發，闡述模式匹配的特性，能夠鼓勵程序員寫出「聲名式設計 Declarative Programming」而不是「指令式設計 Imperative Programming」。
-
-雖然我不確信文章的看法，因為「Tell Don't Ask」就算不使用模式匹配也可以輕易地做到。但是文章內闡述模式匹配重構的過程，還是直得一看。
-
 ## 比較直覺啊？！
 
-聽到有人說：「這樣寫比較直覺啊！」，都會覺得不太對勁，因為「直覺」是主觀的概念，因人而異，但描述「模式匹配」比「條件判斷」直覺，我卻認為十分合適。
+聽到有人說：「這樣寫比較直覺啊！」，都會覺得不太對勁，因為「直覺」是主觀的概念，因人而異，但描述「模式匹配」比較直覺，我卻認為十分合適。
 
 ### 自然對應
 
@@ -116,7 +108,7 @@ Thought 的這篇 ["Tell, Don't Ask" in Elixir: A Story of Pattern-Matching] 也
 
 我們必須要將瓦斯爐的位置，在心裡轉化為另一套可以對應開關位置的系統，才能夠順利的操作瓦斯爐。
 
-如果我們將開關的改成下圖的排列，那使用瓦斯爐就會非常容易。
+如果我們將開關改成下圖的排列，那使用瓦斯爐就會非常容易。
 
 ![natural mapping](/images/pattern-matching/Stove-square.jpg)
 
@@ -138,14 +130,21 @@ end
 
 不是從 tuple 中取值來做條件判斷，而是直接將預期中的結果寫成模式，模式匹配的寫法能夠在資料與預期的結果有自然對應的關係。
 
-另外，模式匹配在「比對」完成後還有「附值」的操作，這也是方便的地方，因為通常匹配的目標，就是接下來要處理得值，這也讓程式碼簡潔許多
+另外，模式匹配在「比對」完成後還有「附值」的操作，這也是方便的地方，因為通常匹配的目標，就是接下來要處理的值，這也讓程式碼簡潔許多。
+
+## 勸人向善的模式匹配
+
+Thoughtbot 的這篇 ["Tell, Don't Ask" in Elixir: A Story of Pattern-Matching] 也提出不同角度的看法。
+
+文章從「Tell Don't Ask」的原則出發，闡述模式匹配的特性，能夠鼓勵程式設計師寫出「聲名式設計 Declarative Programming」而不是「指令式設計 Imperative Programming」。
+
+雖然我不確信文章的看法，因為「Tell Don't Ask」就算不使用模式匹配也可以輕易地做到。但是文章內闡述模式匹配重構的過程，還是值得一看。
 
 ## 結論
 
-根據上面的內容，模式匹配有三個好處：
+根據上面的內容，模式匹配有兩個好處：
 
 - 更容易表達遞迴
-- 鼓勵更好的架構
 - 比較直覺
 
 我們也能夠把「模式匹配」的想法對應到日常開發，而不只是「函數式設計」，像是處理[網址的路由](https://github.com/sinatra/mustermann)，或是[檔案的路徑](https://en.wikipedia.org/wiki/Glob_(programming))。
@@ -153,5 +152,5 @@ end
 將「模式匹配」獨立出來並無法理解它的優點，「模式匹配」搭配語言特性、寫作風格與特定領域，才能體會它的好處。
 
 
-
+[“Tell, Don’t Ask” in Elixir: A Story of Pattern-Matching]: https://robots.thoughtbot.com/tell-don-t-ask-in-elixir
 [Learn You a Haskell - Algebraic data types intro]: http://learnyouahaskell.com/making-our-own-types-and-typeclasses#algebraic-data-types
