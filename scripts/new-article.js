@@ -33,8 +33,11 @@ const prompts = [
       'Ruby',
       'JavaScript',
       'Design',
+      'Coursera',
+      'Note',
       'Tool',
-      'Thought'
+      'Thought',
+      'Functional Programming'
     ]
   },
   {
