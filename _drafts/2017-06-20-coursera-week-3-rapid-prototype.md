@@ -9,9 +9,7 @@ tags:
 categories:
 ---
 
-遭逢兩次感冒的重擊，生理作息完全被打亂，距離上一次[上課]已經過了一個月，今日重逢帶點慶幸，又滿足於找回學習的熱忱。
-
-這週的主題是「打造原型」，在產品開發的過程中，打造原型已經是耳熟能詳的技法，設法聚焦在產品的核心理念，使參與的人獲得共識，並適當地獲得回饋，在投入資源之前確立方向，避免浪費人力物力。
+這週的主題是「打造原型」，通常在開發產品時，不會馬上直接撰寫程式碼，因為產品的方向還有可能經歷多次的轉變，我們可以利用「原型」來確定核心元素，與團隊達成共識，避免浪費資源。
 
 <!--more-->
 
@@ -20,12 +18,31 @@ categories:
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 	- [故事、紙上的原型與建模 Storyboards, Paper Prototypes, and Mockups](#故事紙上的原型與建模-storyboards-paper-prototypes-and-mockups)
+	- [假裝是真的 Wizard of OZ](#假裝是真的-wizard-of-oz)
+	- [假裝是真的 Video Prototyping](#假裝是真的-video-prototyping)
+	- [打造並比較不同的方案 Creating and Comparing Alternatives](#打造並比較不同的方案-creating-and-comparing-alternatives)
 
 <!-- /TOC -->
 
 ## 故事、紙上的原型與建模 Storyboards, Paper Prototypes, and Mockups
 
-## Wizard of OZ
+打造產品會有四個階段來決定介面設計：
+
+- 故事 Storyboards
+- 紙上的原型與建模 Paper Prototypes
+- 建模 Mockups
+
+### 故事 Storyboards
+
+利用簡單的草圖來表達產品的想法，重點應著重在「該產品是否解決了問題？」，「是否滿足使用者的需求？」
+
+
+
+## 假裝是真的 Wizard of OZ
+
+## 假裝是真的 Video Prototyping
+
+## 打造並比較不同的方案 Creating and Comparing Alternatives
 
 
 [上課]: http://otischou.tw/2017/05/23/coursera-week-2-observing-authentic-user-behavior.html
