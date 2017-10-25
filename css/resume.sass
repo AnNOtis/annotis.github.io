@@ -22,6 +22,9 @@ body
   color: #333
   line-height: 1.6
   padding-top: bu()
+  +on-mobile
+    width: 100%
+    margin: auto
 
 h1, h2, h3, h4
   margin-top: 0
@@ -39,21 +42,3 @@ h1, h2, h3, h4
 .hide-when-print
   @media print
     display: none
-
-.languages
-  display: flex
-  position: absolute
-  top: 0
-  right: 0
-  justify-content: flex-end
-  margin: 0
-  @media print
-    display: none
-  > li
-    font-size: 14px
-    list-style: none
-    margin: 0 10px
-    a[disabled]
-      color: #333
-      text-decoration: none
-      pointer-events: none
