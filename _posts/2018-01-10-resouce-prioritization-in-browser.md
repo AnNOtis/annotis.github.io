@@ -23,13 +23,15 @@ categories:
 - [解析 CSS](#解析-css)
 - [針對 CSS 優化第一次渲染的速度](#針對-css-優化第一次渲染的速度)
   - [Media Query](#media-query)
-- [資源處理的三個階段](#資源處理的三個階段)
-- [資源執行的順序](#資源執行的順序)
-- [Critical Resources](#critical-resources)
-- [Speculative parsing](#speculative-parsing)
-- [onLoad vs onContentLoaded](#onload-vs-oncontentloaded)
-  - [onContentLoaded](#oncontentloaded)
-- [資源載入的優先度](#資源載入的優先度)
+  - [動態載入 CSS](#動態載入-css)
+- [下載與解析 JavaScript](#下載與解析-javascript)
+- [JS 優化](#js-優化)
+  - [Async vs Defer](#async-vs-defer)
+  - [Defer](#defer)
+    - [Async](#async)
+  - [動態載入 JS](#動態載入-js)
+- [結論](#結論)
+- [參考資料](#參考資料)
 
 <!-- /TOC -->
 
@@ -112,152 +114,193 @@ style.css 載入後，瀏覽器會分析規則，產生稱之為 CSSOM 的樹狀
 
 ## 針對 CSS 優化第一次渲染的速度
 
-有兩個方法可以優化第一次渲染的速度。
+優化的方法就是讓第一次渲染前要下載與解析的 CSS 減少，只留下必要的 CSS，有兩個方法可以延後下載與解析。
 
 ### Media Query
 
 如果你使用非當前顯示器的 media query 來載入 CSS，該 CSS 會延到第一次渲染之後下載。
 
-舉例來說，使用影印用的 CSS 可以剝離出來單獨宣告：
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-如果你有使用過 Page Speed 檢查過你自己的網頁，他可能會告訴你需要 `清除前幾行內容中的禁止轉譯 JavaScript 和 CSS`，這是什麼意思呢？當然沒人看得懂，因為翻譯得實在很爛。喂谷歌之後大概會查到「Critical Rendering Path」、「Critical Requests」、「Ｃritical Resources」 之類的。Critical 又有多 Critical 呢？我為什麼要在乎呢？你說 Critical 就 Critical 嗎！！
-
-其實我們要在乎的是瀏覽器多快能夠顯示畫面，越快顯示畫面使用者就感覺越舒服。而那些會延後瀏覽器第一次繪製畫面的資源，我們稱之為關鍵資源（Critical Resources）。
-
-## 第一次渲染 First Paint
-
-在第一次渲染之前，會發生幾件事，HTML 文檔會被下載，下載後會被解析。
-
-解析的時候會將看到什麼資源，就把它丟進佇列裡等待下載，下載的順序有一個神秘的規則，
-我研究了很久還是無法嵾透他的規則是什麼，而且各個瀏覽器有「不同」的規則來最佳化他們的下載，這個「不同」讓我很頭痛，我們暫且不理他，只要知道所有 HTML 上下述形式的 CSS、JS、Font 都會在第一次渲染前被下載。
-
-Image 可能會因為不在視圖（view port）當中而延後下載
-
-
-
-## 資源處理的三個階段
-
-- 下載 download
-- 解析 parse
-- 執行 execute
-- render
-
-## 資源執行的順序
+舉例來說，影印才會用到的 CSS，可以剝離出來單獨宣告：
 
 ```html
-<link rel="stylesheets" type="text/css" href="style.css"></link>
-<script src="first.js" type="text/javascript"></script>
-<script src="second.js" type="text/javascript">
+<link rel="stylesheet" media="screen" href="style.css" />
+<link rel="stylesheet" media="print" href="printer.css" />  <!-- 只有在影印的時候才會套用 -->
+```
+
+這樣 `printer.css` 是否被解析完成，就跟第一次渲染無關，如果 `printer.css` 檔案很大，下載或解析很久，就會被延到第一次渲染之後。
+
+其他的 media query 也是用一樣的規則，只要不符合當前顯示的 media，就不會禁止第一次渲染。
+
+### 動態載入 CSS
+
+也可以使用 Javascript 來插入 CSS
+
+```js
+function loadCss (path) {
+  var head= document.getElementsByTagName('head')[0];
+  var style= document.createElement('link')
+  style.rel = "stylesheet"
+  style.href = path
+  head.appendChild(style);
+}
+
+loadCSS('/lazy.css')
+```
+
+`lazy.css` 便不會禁止第一次渲染
+
+
+## 下載與解析 JavaScript
+
+JavaScript 在 HTML 文檔內部，可以以行內的方式嵌入，或是引用外部資源：
+
+行內：
+
+```html
+<script>
+  // do some cool stuff
+  console.log('執行 JavaScript')
 </script>
 ```
 
-我們知道瀏覽器會依序執行資源，所以在上方的例子，`style.css` 會被執行，然後才執行 `first.js` 以及 `second.js`。
-
-假如 `style.css` 定義了 `<body>` 元素的背景顏色，`first.js` 應該要可以讀取到。同理 `first.js` 所做的操作如 `document.body.style = 'red'` 也要可以被 `second.js` 讀取。
-
-這帶來的問題是，下一個資源必須要等待上一個資源被執行完成才會開始執行，在上方的例子如果 `style.css` 的下載花了很久的時間，`first.js` 與 `second.js` 就遲遲不能開始執行。
-
-## Critical Resources
-
-
-
-## Speculative parsing
-
-現今的瀏覽器都會做一個優化，讓瀏覽器先掃過一遍 document，得到所有需要先下載的
-
-## onLoad vs onContentLoaded
-
-### onContentLoaded
-
-發生在瀏覽器下載 HTML、完成解析並建立 DOM tree
-
-瀏覽器在解析 HTML 文件時，當遇到 `<script>...</script>` 便會暫停建立 DOM，因為 script 中的內容有可能改變 document，他必須等到 script 的程式碼被執行後，才會繼續建立 DOM。
-
-載入外部 script 也會暫停 DOM 的建立：
+引用外部資源：
 
 ```html
-<script src="external-a.js" type="text/javscript"></script>
-<script src="external-b.js" type="text/javscript"></script>
+<script type="text/javascript" src="/external.js"></script>
 ```
 
-合情合理，因為在開發者的預期中，嵌入在 HTML 的 JavaScript 就是要順序執行，如果 `external-a.js` 更改 DOM，`external-b.js` 必須要能讀到更改的結果。
+當引用外部資源的時候要注意放置的位置，當放在 `<head>` 中，瀏覽器會等到該 JavaScript 下載解析完成才進行第一次渲染。
 
-而這帶來的影響是，CSS 與 JS 完成下載、解析與執行之後  `DOMContentLoaded` 才會被觸發。
+如果我們在 `<head>` 中引用外部的 jQuery
+
+```html
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</body>
+```
+
+瀏覽器執行結果：
+
+![JS in Head][js-in-head]{:data-action="zoom"}
+
+黃色區塊是正在執行 JavaScript，綠色虛線是第一次渲染發生之時，可以看到渲染在 jQuery 下載完成之後。
+
+但如果我們將 jQuery 宣告放在 `<body>` 中就不會影響第一次渲染。
+
+```html
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</body>
+```
+
+![JS in Body][js-in-body]{:data-action="zoom"}
+
+渲染早早發生，jQuery 才慢慢下載與執行。
+
+## JS 優化
+
+雖然說只要放在 `<body>` 中就能夠減少第一次渲染的時間，但 js 在 body 中的位置會影響其後的內容。
+
+舉例來說：
+
+```html
+<body>
+  <h1>這行出現在 external.js 尚未開始下載前</h1>
+  <script type="text/javascript" src="/external.js"></script>
+  <h1>這行出現在 external.js 執行完成後</h1>
+</body>
+```
+
+第二個 `<h1>` 在下載完成並執行完成之前都不會顯示，所以最佳實踐通常建議將 `<script>` 放在結尾，也就是 `</body>` 前一行。
+
+### Async vs Defer
+
+在舊瀏覽器我們只能使用放在結尾的方式，但新的標準提供了 `defer` 與 `async` 可以做到一樣的事情。
+
+### Defer
+
+當在 `<script>` 加上 defer:
+
+```html
+<script defer type="text/javascript" src="/external.js"></script>
+```
+
+在解析 HTML 時不會停下來等 js 執行完，而是 **等到 HTML 解析完成才執行**，而且會循著宣告的順序執行。
+
+如果你將 `<script>` 放在 HTML 文檔的結尾，有沒有加 defer 的效果是一樣的。
+
+差別是當你將 `<script>` 放在 HTML 文檔中間，他並不會暫停 HTML 解析
 
 
+#### Async
 
+```html
+<script async type="text/javascript" src="/external.js"></script>
+```
 
+async 也不會暫停 HTML 解析，但他很特別，他會在 **下載完成的那一刻馬上執行**。
 
+這表示如果你有多個 `<script>` 使用 async，他們之間的執行順序一定不能保證，async 只適合用在需要越早執行越好，但是又跟其他程式碼沒有依賴關係的程式碼，像是偵測使用者行為的程式（例：Google Analytics）。
 
-這代表所有在 `Speculative parsing` 所掃瞄到的 JavaScript 必須已經被載入，因為 JS 的程式碼很有可能會改變 HTML，而且
+### 動態載入 JS
+
+動態載入 JS 非常彈性，你可以決定他的載入時機要在 HTML 解析完成之時，還是所有資源都被下載完成之後。
+
+基本的動態載入 JS 的程式碼長這樣：
+
+```js
+function loadJS (path) {
+  var head = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script')
+  script.type = "text/javascript"
+  script.src = path
+  head.appendChild(script);
+}
+
+loadJS('./external')
+```
+
+當你想要在 HTML 解析完成之後就開始執行，就把它包在 `DOMContentLoaded` 事件發生之時：
+
 ```js
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log(`[Event] DOMContentLoaded - DOM fully loaded and parsed! ${getTimeFromStart()}`)
+  loadJS('./externalA.js')
+  loadJS('./externalB.js')
+  loadJS('./externalC.js')
 })
 ```
 
-所有資源被載入後回傳，
+而你想要等在所有資源都載入完成之後，包括不再 viewport 內的圖片，以及沒有符合當前 media query 的 CSS 都載入完成才載入的話，就包在 `onload` 事件內。
 
 ```js
-window.addEventListener("load", function(event) {
-  console.log(`[Event] Load - All resources finished loading! ${getTimeFromStart()}`)
-})
+window.onload = function() {
+  loadJS('./externalA.js')
+  loadJS('./externalB.js')
+  loadJS('./externalC.js')
+}
 ```
 
+## 結論
 
+講了落落長，好像沒有結論不行，但我又是個迷幻的人，自己都不知道我在幹麻。
 
-## 資源載入的優先度
+結論應該是，要優化第一次渲染的時間很簡單，只要將真正重要的東西用正常的方式宣告，其他則延後下載或執行。
+
+CSS 可以使用 media query 跟動態載入來延後下載與執行，而 JavaScript 則是放在結尾、使用 defer 或是動態載入。
+
+## 參考資料
 
 [Resource Fetch Prioritization and Scheduling in Chromium](https://docs.google.com/document/d/1bCDuq9H1ih9iNjgzyAL0gpwNFiEP4TZS-YLRp_RuMlc/edit#)
-
-[Using the Paint Timing API | CSS-Tricks](https://css-tricks.com/paint-timing-api/)
-
-[A Primer for Web Performance Timing APIs](http://w3c.github.io/perf-timing-primer/)
 
 [Building the DOM faster: speculative parsing, async, defer and preload](https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/)
 
 [The Critical Request](https://css-tricks.com/the-critical-request/)
 
-[Preload, Prefetch And Priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf)
-
 [Resource Prioritization – Getting the Browser to Help You](https://developers.google.com/web/fundamentals/performance/resource-prioritization)
-
-
 
 [如何決定下載的優先程度]:https://docs.google.com/document/d/1bCDuq9H1ih9iNjgzyAL0gpwNFiEP4TZS-YLRp_RuMlc/edit#
 
 [css-block-rendering]: /images/before-first-paint/css-block-rendering.png
 [rendering-flow]: /images/before-first-paint/rendering-flow.png
+[js-in-body]: /images/before-first-paint/js-in-body.png
+[js-in-head]: /images/before-first-paint/js-in-head.png
