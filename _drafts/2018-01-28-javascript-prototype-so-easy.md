@@ -148,12 +148,154 @@ console.log(six) // null
 
 > 當原形鍊不斷上去，終點是 null，當遇到 null 的時候便會停止，因為 null 沒有任何的屬性，而且 null 的原型還是 null。
 
-## 自我定義原型鍊
+## 自定義原型之 Object.create()
 
 俗話說得好，沒辦法應用的東西都只是空中樓閣，只有理論而不能實踐在我們的程式碼的話就沒有價值。
 
+所以我們要知道，如何自行建立原形鍊，這樣原形鍊的概念才能為我們所用。
+
 原型鍊的特性能讓我們引用其他物件的屬性，這恰好很能夠應用到物件導向上，物件導向的核心之一就是行為的繼承，行為能被不同的物件繼承下去。
 
-龍生龍，鳳生鳳，老鼠生的兒子會打洞，Yo
+> 龍生龍，鳳生鳳，老鼠生的兒子會打洞
+
+華盛頓他爸年輕的時候是砍樹的專家，他知道如何砍倒每一棵樹，尤其是櫻桃樹。
+
+```js
+const father = {
+  cut: function () {
+    console.log("I know how to cut a tree, expecially cherry tree.")
+  }
+}
+```
+
+過了幾年意氣風發的日子，他遇上了生命中對他最重要的女人，他們決定共組家庭，沒想到一切才是噩夢的開始。
+
+他們生下的第一個兒子，不管怎麼教，都對砍樹沒有興趣，倒是整天黏在螢幕前，嘴裡喃喃有詞，「哦哦，原來原型鍊會往上查看另一個物件的屬性，直到碰到 null。」
+
+```js
+const son = {
+  job: 'JavaScript Developer'
+  speak: () => console.log('%*#!&^%A0daf#*l')
+}
+console.log(son.cut()) // TypeError: 我不會砍樹
+console.log(son.girlfriend) // undefined
+```
+
+華盛頓他爸知道，這個兒子，這個不孝子已經選擇了一條最艱辛的路，他已經愛上 JavaScript，一輩子都會是個肥宅，靠他繼承砍樹的事業是不行了。
+
+還好華盛頓他爸正值壯年，再生一個兒子對他來說還是沒有問題的，不過他這次決定執行計畫性的生育，事前使用 `Object.create` 來做一個孵蛋的動作。
+
+```js
+const anotherSon = Object.create(father)
+```
+
+故事的發展正如同大家想的一樣，另外一個兒子，也就是華盛頓，在六歲那年，拿起了大斧頭砍倒了門前的櫻桃樹。
+
+```js
+anotherSon.cut() // "I know how to cut a tree, expecially cherry tree."
+```
+
+華盛頓把這件事告訴他爸爸，他爸爸不僅沒有責罰他，還興高采烈的誇獎他：「不愧是我的好兒子啊！」
+
+這就是華盛頓砍倒櫻桃樹的故事，這個故事告訴我們。
+
+「要生兒子的時候，記得要使用 Object.create()。」
+
+
+## Object.create 概念彙總
+
+講了很多廢話，其實是想說
+
+「當你調用 Object.create()，就會以參數作為原型產生新的物件」
+
+```js
+const father = {
+  cut: () => console.log('Kill a cherry tree.')
+}
+const son = Object.create(father)
+```
+
+這是後，原型的鏈結已經被建立，如果你不相信，你可以用 `Object.getPrototypeOf` 確認一下
+
+```js
+console.log(
+  Object.getPrototypeOf(son) === father
+) // true
+```
+
+son 的原型會是 father，也因此 son 可以存取 father 的屬性
+
+```js
+son.cut() // Kill a cherry tree
+```
+
+## 自定義原型鍊之 - new Constructor
+
+上方 Object.create 的例子，是一個很好的示範時如建立原形鍊，但是對於物件導向來說，我覺得不行。
+
+如果我們砍樹系統中，有很多老爸都會砍樹，只是名字不同，要怎麼在我們系統中實踐呢？
+
+```js
+function generateFather (name, cutThree) {
+  return {
+    name: name,
+    cut: console.log('Kill a cherry tree.')
+  }
+}
+
+const fatherBatman = generateFather('Batman')
+fatherBatman.name // Batman
+fatherBatman.cut() // Kill a cherry tree
+
+const fatherSuperman = generateFather('Superman')
+fatherSuperman.name // Superman
+fatherSuperman.cut() // Kill a cherry tree
+
+const fatherJay = generateFather('Jay Chou')
+fatherJay.name // Jack Chou
+fatherJay.cut() // Kill a cherry tree
+```
+
+const son = Object.create(fatherA)
+
+這樣的結果我們可以很愉快的讓每一位老爸都會砍樹，還可以讓每一位老爸都有自己的名字，帥！
+
+但是，當我們開始使用 Object.create 生小孩的時候，問題就來了。
+
+```js
+const sonA = Object.create(fatherJay)
+sonA.name // Jay Chou
+const sonB = Object.create(fatherJay)
+sonB.name // Jay Chou
+const sonC = Object.create(fatherJay)
+sonC.name // Jay Chou
+```
+
+fatherJay 生出來的小孩每一個都叫 Jay Chou，WTF，青蜂俠只能有一個。
+
+問題是出在，我們沒能把可以被繼承的行為（or 屬性），與不能夠被繼承的行為分開。
+
+### Constructor
+
+JavaScript 中直接就提供方法來面對這個問題。
+
+```js
+function Father (name) {
+  this.name = name
+}
+
+Father.prototype.cut = () => console.log('Kill a tree')
+```
+
+使用這種方法，我們直接就將老爸的
+
+```js
+function Father (name) {
+  this.name = name
+}
+
+
+```
+
 
 
