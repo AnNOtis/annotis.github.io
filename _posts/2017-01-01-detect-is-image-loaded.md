@@ -48,7 +48,7 @@ image.onload = function () { /* ... */ }
 
 // 執行下方程式碼
 var image = new Image()
-image.load = function () { /* 這裡永遠不會被執行到 QQ */ }
+image.onload = function () { /* 這裡永遠不會被執行到 QQ */ }
 image.src = 'https://www.google.com/favicon.ico'
 ```
 
@@ -89,8 +89,6 @@ onImageLoaded('https://google.com/favicon.ico', function (icon) {
   console.log('Google 的 Favicon 載入完成啦！')
 })
 ```
-
-> 有些人可能注意到，上方的程式碼，`.src` 敘述在 `.onload` 之前，在 Safari 中會不會產生上面提到的問題呢？答案是不會。因為假如圖片已經被載入，`complete` 屬性就會變成 `true`，也就是在第一個條件式就已經先處理了。
 
 ## 結論
 

@@ -61,7 +61,7 @@ That's the idea，它存在於原型鍊的另一個物件。
 
 但 `__proto__` 在某些瀏覽器會爆炸，而且就算是神也不知道到底哪些瀏覽器才有支援 `__proto__`，神建議你先安裝 chrome，並另外使用標準加持的 `getPrototypeOf` 進行原型鍊小旅行。
 
-使用 getPrototypeOf 可以找到另一個物件：
+使用 getPrototypeOf 可以找到原型鍊上的下一個物件：
 
 ```js
 const anotherObject = Object.getPrototypeOf(person)
@@ -277,7 +277,7 @@ sonC.name // Jay Chou
 
 ### Constructor
 
-JavaScript 中直接就提供方法來面對這個問題。
+JavaScript 中能夠解決這個問題。
 
 ```js
 function Father (name) {
