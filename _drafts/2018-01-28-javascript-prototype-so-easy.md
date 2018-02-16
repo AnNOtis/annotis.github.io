@@ -239,7 +239,7 @@ son.cut() // Kill a cherry tree
 function generateFather (name, cutThree) {
   return {
     name: name,
-    cut: console.log('Kill a cherry tree.')
+    cut: () => console.log('Kill a cherry tree.')
   }
 }
 
@@ -273,29 +273,48 @@ sonC.name // Jay Chou
 
 fatherJay 生出來的小孩每一個都叫 Jay Chou，WTF，青蜂俠只能有一個。
 
+那我們要怎麼樣才能生出不同名字的小孩呢？ 抱歉，我們無法～ 無法只用 Object.create 做到
+
 問題是出在，我們沒能把可以被繼承的行為（or 屬性），與不能夠被繼承的行為分開。
 
-### Constructor
+### 建構子 Constructor
 
-JavaScript 中能夠解決這個問題。
+JavaScript 中能夠解決這個問題。但這個故事非常的長，請聽我娓娓道來。
+
+首先，在上方的例子，我們為了要有不同的名字的老爸，自己做了一個 `generateFather` 的函式。
+
+但身為一個正常的 JavaScript 開發者是不會這樣做的，通常我們會使用建構子（Constructor）。
+
+```js
+function Father () {} // 這就是建構子！
+const father = new Father()
+console.log(father) // [object Object]
+```
+
+被語法 `new` 呼叫的函式就是建構子，在上方的範例中建構子就是 Father，呼叫 `new Father()` 就可以不斷地生出以建構子 Father 為藍本的物件。
+
+注意！建構子函式不需要像這樣 `function Father() { return {} }` 定義回傳一個物件，只要使用 new 呼叫建構子，就會免費送一個物件給你。
+
+身為一個好奇的 JavaScript 開發者會問，那為什麼 Father 的 F 要大寫呢？
+
+除了老爸就是因為頭比較大才會變成老爸之外，另外一個原因是要跟一般的函式做區分。
+
+這也是社群的慣例，因為被 new 呼叫的建構子除了是一般的函式之外，他還有特別的功能，如果你用一般的方式呼叫（例如： `Father()`），就失去的他的能力。
+
+什麼能力？？？？
+
+「定義屬性的能力」
+
+### 屬性
+
+在物件導向的概念中，屬性與行為是一個物件組成要素，在上方的範例，我們呼叫 `new Father()` 只會生成一個空的物件，一點用也沒有，所以我們要把它加上屬性先。
 
 ```js
 function Father (name) {
   this.name = name
 }
-
-Father.prototype.cut = () => console.log('Kill a tree')
+const father = new Father('頭很大的老爸')
+console.log(father.name) // '頭很大的老爸'
 ```
 
-使用這種方法，我們直接就將老爸的
-
-```js
-function Father (name) {
-  this.name = name
-}
-
-
-```
-
-
-
+一看就知道我們是用 `this.name` 來定義屬性，`this.x`、`this.y`、`this.z`...，隨便想怎麼定義就怎麼定義，
