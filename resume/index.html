@@ -2,221 +2,252 @@
 layout: resume
 ---
 <hedaer id="header">
-    <div id="left-block">
-        <h1 class="name"> 周新捷 </h1>
-        <h2 class="title"> Frontend Developer </h2>
-        <div class="operation-bar">
-            <a class="print-button" href="javascript:window.print()">列印此頁</a>
-        </div>
-        <ul class="languages">
-          <li><a href="/resume/en">English</a></li>
-          <li><a href="#" disabled>繁體中文<a></li>
-        </ul>
+  <div id="left-block">
+    <h1 class="name"> 周新捷 </h1>
+    <h2 class="title"> Frontend Engineer </h2>
+    <div class="operation-bar">
+      <a class="print-button" href="javascript:window.print()">列印此頁</a>
+    </div>
+    <ul class="languages">
+      <li><a href="/resume/en">English</a></li>
+      <li><a href="#" disabled>繁體中文<a></li>
+      </ul>
     </div>
     <div id="right-block">
-        <ul class="info">
-            <li class="info-item"> Taipei, Taiwan </li>
-            <li class="info-item">
-                <a href="mailto:altispec@gmail.com">otischou.tw@gmail.com</a>
-            </li>
-            <li class="info-item">
-                <a href="http://github.com/AnNOtis">http://github.com/AnNOtis</a>
-            </li>
+      <ul class="info">
+        <li class="info-item"> Taipei, Taiwan </li>
+        <li class="info-item">
+          <a href="mailto:altispec@gmail.com">otischou.tw@gmail.com</a>
+        </li>
+        <li class="info-item">
+          <a href="http://github.com/AnNOtis">http://github.com/AnNOtis</a>
+        </li>
+      </ul>
+    </div>
+  </hedaer>
+  <article id="content">
+    <div class="section">
+      <div class="section-title" title="SKILL"></div>
+      <div class="skill section-body">
+        <div class="skill-summary">
+          <br>四年網頁開發經驗，目前朝前端工程師之路邁進。
+          <br>前端熟悉 ES6 與 React 生態系，後端熟悉 Ruby 與 Node.js。
+        </div>
+        <ul class="skill-list">
+          <li class="skill-subject"> Frontend </li>
+          <li class="skill-item"> ES6, CoffeeScript </li>
+          <li class="skill-item"> React.js, Redux, Webpack </li>
+          <li class="skill-item"> jQuery, Canvas </li>
         </ul>
-    </div>
-</hedaer>
-<article id="content">
-    <div class="section">
-        <div class="section-title" title="SKILL"></div>
-        <div class="skill section-body">
-          <div class="skill-summary">
-            <br>四年網頁開發經驗，目前朝前端工程師之路邁進。
-            <br>前端熟悉 ES6 與 React 生態系，後端熟悉 Ruby 與 Node.js。
-          </div>
-          <ul class="skill-list">
-            <li class="skill-subject"> Frontend </li>
-            <li class="skill-item"> ES6, CoffeeScript </li>
-            <li class="skill-item"> React.js, Redux, Webpack </li>
-            <li class="skill-item"> jQuery, Canvas </li>
-          </ul>
-          <ul class="skill-list">
-            <li class="skill-subject"> Backend </li>
-            <li class="skill-item"> Node.js, Express.js </li>
-            <li class="skill-item"> Ruby, Ruby on Rails </li>
-          </ul>
-        </div>
+        <ul class="skill-list">
+          <li class="skill-subject"> Backend </li>
+          <li class="skill-item"> Node.js, Express.js </li>
+          <li class="skill-item"> Ruby, Ruby on Rails </li>
+        </ul>
+      </div>
     </div>
     <div class="section">
-        <div class="section-title" title="EXPERIENCE"></div>
-        <div class="section-body">
-          <h2 class="title"> Frontend Engineer
-            <div class="external-link">
-                <a href="http://otischou.tw/imperfect/2017-01-17-works-in-commandp/">詳細經歷 →</a>
-            </div>
-            <div class="date"> 2015/12 - 2017/03 </div>
-          </h2>
-          <h3 class="subtitle"> 我印 commandp Inc. </h3>
-          <div class="content">
+      <div class="section-title" title="EXPERIENCE"></div>
+      <div class="section-body">
+        <h2 class="title"> Sr. Frontend Engineer
+          <div class="date"> 2018/03 - present </div>
+        </h2>
+        <h3 class="subtitle"> 17 Media </h3>
+        <div class="content">
+          <ul>
+            <li>開發與重新設計多個內部系統，在不影響使用者操作習慣的前提下，提升使用者體驗</li>
+            <li>從頭建立收入系統，制定需求訪談模板，參與需求訪談，設計系統流程與 UI，並追求使用者體驗，尤其專注在減少錯誤與提升操作效率</li>
+            <li>為三年的老舊專案建置持續整合，並重新整理測試環境，包括：修復 Flaky tests、解決失敗的測試與警告、簡化測試流程、統一測試環境</li>
+            <li>撰寫單元測試教學文件，提供團隊測試上的指引</li>
+            <li>建立可同時部署多版本的 staging 流程與環境，讓團隊成員可以同時開發不同功能，並發佈給不同團隊測試與驗收</li>
+            <li>作為發起者，與後端發展 GraphQL 開發慣例，包括：如何與 Apollo 協作、錯誤與空值的處理、時間格式</li>
+            <li>率先使用 Apollo 來建立系統，研究最佳實踐，並推廣至團隊內部</li>
+            <li>基於 Apollo 撰寫 Library 處理前端衍生資料，避免轉換後端資料的邏輯在 UI 層擴散，建立此基準讓系統可被測試且可維護</li>
+          </ul>
+          <div class="inline-tech">
+            <span class="label">Tech Used</span>
             <ul>
-              <li>使用 React Native 開發 App，並進行效能優化，包括加快首頁開啟速度、內容緩存、延後載入、開發圖片緩存套件以及改進動畫效果的流暢度</li>
-              <li>使用 React 與 Express 建立統一的行動版結帳頁面，避免在多個平台（iOS, Android, Web）開發重複功能</li>
-              <li>使用 React 與 Canvas 開發客製商品的 SDK，並撰寫文件以及協調廠商技術問題，該 SDK 被中國最大的禮物網站「禮物說」選用</li>
-              <li>建立使用 React 開發專案的相關規範與指引，使團隊內部開發有所依據，內容包括語法規範、專案結構、狀態管理建議作法以及如何撰寫測試</li>
-              <li>致力於推動團隊工作效率，建立 git、程式碼審查流程，並開發工具輔助流程的建立</li>
-              <li>使用 Jenkins 為多個前端專案建立持續整合與持續部署，內容包括規劃流程、撰寫腳本到環境建置</li>
+              <li>JavaScript (ES2015+)</li>
+              <li>React</li>
+              <li>Apollo</li>
+              <li>GraphQL</li>
+              <li>Node.js</li>
+              <li>Webpack</li>
+              <li>JEST</li>
             </ul>
-            <div class="inline-tech">
-                <span class="label">Tech Used</span>
-                <ul>
-                  <li>JavaScript (ES2015), CoffeeScript</li>
-                  <li>React</li>
-                  <li>React Native</li>
-                  <li>Redux</li>
-                  <li>Webpack</li>
-                  <li>Mocha</li>
-                  <li>Ruby on Rails</li>
-                </ul>
-            </div>
           </div>
         </div>
-        <div class="section-body">
-            <h2 class="title"> Ruby on Rails Developer
-                <div class="date"> 2014/08 - 2015/10 </div>
-            </h2>
-            <h3 class="subtitle"> 布魯貝克科技 </h3>
-            <div class="content">
-                <ul>
-                    <li>開發與維護 Ruby on Rails 系統，以物件導向概念設計應用程式</li>
-                    <li>將既有的 Node.js 系統移植到 Ruby on Rails，重新設計 RESTful API 架構</li>
-                    <li>使用 React.js 與 Flux 開發 Single Page Application</li>
-                    <li>建置 ElasticSearch 搜尋系統</li>
-                    <li>日常部署與架設日誌管理系統</li>
-                    <li>改進 CSS 組織方式，建立統一的命名風格與模組化 CSS 架構</li>
-                    <li>美化與改進使用者介面，設計 Responsive Web Design</li>
-                    <li>使用 Sketch 繪製 APP 產品原型</li>
-                </ul>
-                <div class="inline-tech">
-                  <span class="label">Tech Used</span>
-                  <ul>
-                    <li>SASS</li>
-                    <li>React.js</li>
-                    <li>Ruby on Rails</li>
-                    <li>RSpec and Minitest</li>
-                    <li>PostgreSQL</li>
-                    <li>AWS (EC2, RDS, S3, SNS, EB)</li>
-                    <li>Elasticsearch</li>
-                  </ul>
-                </div>
-            </div>
-        </div>
-        <div class="section-body">
-            <h2 class="title"> Web Developer
-                <div class="date"> 2013/07 - 2014/06 </div>
-            </h2>
-            <h3 class="subtitle"> 宏鼎資訊 </h3>
-            <div class="content">
-                <ul>
-                  <li>擔任專案負責人，與其它公司合作在三個月內開發線上課程平台，供 12 所大學助教訓練使用，獨立開發帳號管理系統，供北市 7 所學校使用</li>
-                  <li>以 OAuth 2.0 協定建置授權平台（Provider）</li>
-                  <li>公司產品教育訓練講師</li>
-                  <li>以 HTML5 技術開發高互動性的介面，探索 SVG、Canvas、CSS Animation 與 CSS 3D 相關技術</li>
-                </ul>
-                <div class="inline-tech">
-                    <div class="label"> Tech Used </div>
-                    <ul>
-                        <li>Java</li>
-                        <li>JSP</li>
-                        <li>Android</li>
-                        <li>PHP</li>
-                        <li>CodeIgniter</li>
-                        <li>HTML5 JavaScript CSS</li>
-                        <li>OAuth 2.0</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-title" title="AWARD"></div>
-        <div class="section-body">
-            <h2 class="title"> 菜色 Dish Color
-                <div class="external-link">
-                    <a href="https://github.com/Fool-Stack-Rangers/DishColor">原始碼</a>
-                </div>
-                <div class="date"> 2015/02 </div>
-                <h3 class="subtitle"> ALPHA Hackathon 2015 (百人參賽得到第二名)</h3>
-            </h2>
-            <div class="content">
-                <p>分析料理的顏色，幫助使用者選擇今晚要下廚的菜色。</p>
-                <p>在團隊裡負責網站風格規劃、開發前端介面及使用者後台。</p>
-                <div class="inline-tech">
-                    <div class="label"> Tech Used </div>
-                    <ul>
-                        <li>Ruby on Rails</li>
-                        <li>Gauguin</li>
-                        <li>SVG</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-title" title="SIDE PROJECT"></div>
-        <div class="section-body">
-          <h2 class="title"> Rx Snake
-            <div class="external-link">
-              <a href="https://github.com/AnNOtis/rx-snake">Github</a>
-            </div>
-            <div class="date"> 2017 </div>
-          </h2>
-          <div class="content">
-            用 Rx.js 與 Canvas 製作的貪吃蛇遊戲
+      </div>
+      <div class="section-body">
+        <h2 class="title"> Frontend Engineer
+          <div class="external-link">
+            <a href="http://otischou.tw/imperfect/2017-01-17-works-in-commandp/">詳細經歷 →</a>
+          </div>
+          <div class="date"> 2015/12 - 2017/03 </div>
+        </h2>
+        <h3 class="subtitle"> 我印 commandp Inc. </h3>
+        <div class="content">
+          <ul>
+            <li>使用 React Native 開發 App，並進行效能優化，包括加快首頁開啟速度、內容緩存、延後載入、開發圖片緩存套件以及改進動畫效果的流暢度</li>
+            <li>使用 React 與 Express 建立統一的行動版結帳頁面，避免在多個平台（iOS, Android, Web）開發重複功能</li>
+            <li>使用 React 與 Canvas 開發客製商品的 SDK，並撰寫文件以及協調廠商技術問題，該 SDK 被中國最大的禮物網站「禮物說」選用</li>
+            <li>建立使用 React 開發專案的相關規範與指引，使團隊內部開發有所依據，內容包括語法規範、專案結構、狀態管理建議作法以及如何撰寫測試</li>
+            <li>致力於推動團隊工作效率，建立 git、程式碼審查流程，並開發工具輔助流程的建立</li>
+            <li>使用 Jenkins 為多個前端專案建立持續整合與持續部署，內容包括規劃流程、撰寫腳本到環境建置</li>
+          </ul>
+          <div class="inline-tech">
+            <span class="label">Tech Used</span>
+            <ul>
+              <li>JavaScript (ES2015), CoffeeScript</li>
+              <li>React</li>
+              <li>React Native</li>
+              <li>Redux</li>
+              <li>Webpack</li>
+              <li>Mocha</li>
+              <li>Ruby on Rails</li>
+            </ul>
           </div>
         </div>
-        <div class="section-body">
-          <h2 class="title"> Close Idle Tabs
-            <div class="external-link">
-              <a href="https://github.com/AnNOtis/close-idle-tabs">Github</a>
-            </div>
-            <div class="date"> 2017 </div>
-          </h2>
-          <div class="content">
-            Chrome 插件幫助我自己管理瀏覽器的頁籤
+      </div>
+      <div class="section-body">
+        <h2 class="title"> Ruby on Rails Developer
+          <div class="date"> 2014/08 - 2015/10 </div>
+        </h2>
+        <h3 class="subtitle"> 布魯貝克科技 </h3>
+        <div class="content">
+          <ul>
+            <li>開發與維護 Ruby on Rails 系統，以物件導向概念設計應用程式</li>
+            <li>將既有的 Node.js 系統移植到 Ruby on Rails，重新設計 RESTful API 架構</li>
+            <li>使用 React.js 與 Flux 開發 Single Page Application</li>
+            <li>建置 ElasticSearch 搜尋系統</li>
+            <li>日常部署與架設日誌管理系統</li>
+            <li>改進 CSS 組織方式，建立統一的命名風格與模組化 CSS 架構</li>
+            <li>美化與改進使用者介面，設計 Responsive Web Design</li>
+            <li>使用 Sketch 繪製 APP 產品原型</li>
+          </ul>
+          <div class="inline-tech">
+            <span class="label">Tech Used</span>
+            <ul>
+              <li>SASS</li>
+              <li>React.js</li>
+              <li>Ruby on Rails</li>
+              <li>RSpec and Minitest</li>
+              <li>PostgreSQL</li>
+              <li>AWS (EC2, RDS, S3, SNS, EB)</li>
+              <li>Elasticsearch</li>
+            </ul>
           </div>
         </div>
-        <div class="section-body">
-            <h2 class="title"> 其他
-                <div class="external-link">
-                    <a href="https://github.com/AnNOtis">我的 Github</a>
-                </div>
-            </h2>
+      </div>
+      <div class="section-body">
+        <h2 class="title"> Web Developer
+          <div class="date"> 2013/07 - 2014/06 </div>
+        </h2>
+        <h3 class="subtitle"> 宏鼎資訊 </h3>
+        <div class="content">
+          <ul>
+            <li>擔任專案負責人，與其它公司合作在三個月內開發線上課程平台，供 12 所大學助教訓練使用，獨立開發帳號管理系統，供北市 7 所學校使用</li>
+            <li>以 OAuth 2.0 協定建置授權平台（Provider）</li>
+            <li>公司產品教育訓練講師</li>
+            <li>以 HTML5 技術開發高互動性的介面，探索 SVG、Canvas、CSS Animation 與 CSS 3D 相關技術</li>
+          </ul>
+          <div class="inline-tech">
+            <div class="label"> Tech Used </div>
+            <ul>
+              <li>Java</li>
+              <li>JSP</li>
+              <li>Android</li>
+              <li>PHP</li>
+              <li>CodeIgniter</li>
+              <li>HTML5 JavaScript CSS</li>
+              <li>OAuth 2.0</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
     <div class="section">
-        <div class="section-title" title="COMMUNITY"></div>
-        <div class="section-body">
-            <h2 class="title"> Ruby 讀書會
-               &nbsp;&nbsp;<span class="subtitle"> 主辦人 </span>
-              <div class="date"> 2015 - 2016 </div>
-            </h2>
-            <div class="content">
-                <p>每兩週舉辦一次，聚集對 Ruby 有熱情的夥伴，主要目標是深入了解 Ruby。</p>
-                <p>書目：<small>Metaprogramming Ruby、Practical Object-Oriented Design in Ruby、Rails 4 Test Prescriptions</small></p>
-            </div>
+      <div class="section-title" title="AWARD"></div>
+      <div class="section-body">
+        <h2 class="title"> 菜色 Dish Color
+          <div class="external-link">
+            <a href="https://github.com/Fool-Stack-Rangers/DishColor">原始碼</a>
+          </div>
+          <div class="date"> 2015/02 </div>
+          <h3 class="subtitle"> ALPHA Hackathon 2015 (百人參賽得到第二名)</h3>
+        </h2>
+        <div class="content">
+          <p>分析料理的顏色，幫助使用者選擇今晚要下廚的菜色。</p>
+          <p>在團隊裡負責網站風格規劃、開發前端介面及使用者後台。</p>
+          <div class="inline-tech">
+            <div class="label"> Tech Used </div>
+            <ul>
+              <li>Ruby on Rails</li>
+              <li>Gauguin</li>
+              <li>SVG</li>
+            </ul>
+          </div>
         </div>
-        <div class="section-body">
-            <h2 class="title"> Rails Girls Taipei  4th/ 5th/ 6th
-               &nbsp;&nbsp;<span class="subtitle"> 教練 </span>
-              <div class="date"> 2014 </div>
-            </h2>
-        </div>
+      </div>
     </div>
     <div class="section">
-        <div class="section-title" title="EDUCATION"></div>
-        <div class="section-body">
-            <h2 class="title"> 軟體工程學系學士 國立高雄師範大學
-                <div class="date"> 2009 - 2013 </div>
-            </h2>
+      <div class="section-title" title="SIDE PROJECT"></div>
+      <div class="section-body">
+        <h2 class="title"> Rx Snake
+          <div class="external-link">
+            <a href="https://github.com/AnNOtis/rx-snake">Github</a>
+          </div>
+          <div class="date"> 2017 </div>
+        </h2>
+        <div class="content">
+          用 Rx.js 與 Canvas 製作的貪吃蛇遊戲
         </div>
+      </div>
+      <div class="section-body">
+        <h2 class="title"> Close Idle Tabs
+          <div class="external-link">
+            <a href="https://github.com/AnNOtis/close-idle-tabs">Github</a>
+          </div>
+          <div class="date"> 2017 </div>
+        </h2>
+        <div class="content">
+          Chrome 插件幫助我自己管理瀏覽器的頁籤
+        </div>
+      </div>
+      <div class="section-body">
+        <h2 class="title"> 其他
+          <div class="external-link">
+            <a href="https://github.com/AnNOtis">我的 Github</a>
+          </div>
+        </h2>
+      </div>
     </div>
-</article>
+    <div class="section">
+      <div class="section-title" title="COMMUNITY"></div>
+      <div class="section-body">
+        <h2 class="title"> Ruby 讀書會
+          &nbsp;&nbsp;<span class="subtitle"> 主辦人 </span>
+          <div class="date"> 2015 - 2016 </div>
+        </h2>
+        <div class="content">
+          <p>每兩週舉辦一次，聚集對 Ruby 有熱情的夥伴，主要目標是深入了解 Ruby。</p>
+          <p>書目：<small>Metaprogramming Ruby、Practical Object-Oriented Design in Ruby、Rails 4 Test Prescriptions</small></p>
+        </div>
+      </div>
+      <div class="section-body">
+        <h2 class="title"> Rails Girls Taipei  4th/ 5th/ 6th
+          &nbsp;&nbsp;<span class="subtitle"> 教練 </span>
+          <div class="date"> 2014 </div>
+        </h2>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title" title="EDUCATION"></div>
+      <div class="section-body">
+        <h2 class="title"> 軟體工程學系學士 國立高雄師範大學
+          <div class="date"> 2009 - 2013 </div>
+        </h2>
+      </div>
+    </div>
+  </article>
+  
