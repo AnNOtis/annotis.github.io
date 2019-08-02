@@ -317,4 +317,6 @@ const father = new Father('頭很大的老爸')
 console.log(father.name) // '頭很大的老爸'
 ```
 
-一看就知道我們是用 `this.name` 來定義屬性，`this.x`、`this.y`、`this.z`...，隨便想怎麼定義就怎麼定義，
+一看就知道我們是用 `this.name` 來定義屬性，`this.x`、`this.y`、`this.z`...，隨便想怎麼定義就怎麼定義。
+
+But! this 是從哪裡來的呢？在上一節有提到，使用 new 呼叫建構子會回傳一個物件，
