@@ -1,23 +1,21 @@
 ---
 layout: post
-title: "在 React Apollo 中處理 UI 衍生資料"
+title: "處理 GraphQL 的 UI 衍生資料"
 date: 2019-08-02 12:43:44 +0800
 tags:
   - JavaScript
+  - GraphQL
 categories:
 ---
 
-## 目的
-
 後端在開發 API 時，不可能完全符合前端的期待，因為後端的目的是盡可能的將 API 設計的一般化，這樣能提供更多服務共用 API，也能減輕開發負擔。
 
-前端理所當然就無法避免要處理 UI 衍生資料，我們需要針對 Resposne 的值進行轉換來符合前端的需求，轉換的程式碼很容易就不受控制的侵入進 UI 層，尤其是在 GraphQL 的 Response 非常彈性的情況下，處理起來也十分令人煩躁。
+前端理所當然就無法避免要處理 UI 衍生資料，我們需要針對 Resposne 的值進行轉換來符合前端的需求，轉換的程式碼很容易就不受控制的侵入進 UI 層，尤其 GraphQL 的 Response 非常彈性，處理起來也十分令人煩躁。
 
 <!--more-->
 
 本文章嘗試說明問題與提供解決方式
 
-- [目的](#%e7%9b%ae%e7%9a%84)
 - [問題](#%e5%95%8f%e9%a1%8c)
   - [1. 型別對 JS 來說不好操作](#1-%e5%9e%8b%e5%88%a5%e5%b0%8d-js-%e4%be%86%e8%aa%aa%e4%b8%8d%e5%a5%bd%e6%93%8d%e4%bd%9c)
   - [2. 後端的特有的邏輯滲透到前端](#2-%e5%be%8c%e7%ab%af%e7%9a%84%e7%89%b9%e6%9c%89%e7%9a%84%e9%82%8f%e8%bc%af%e6%bb%b2%e9%80%8f%e5%88%b0%e5%89%8d%e7%ab%af)
@@ -79,20 +77,18 @@ new Date(parseInt(timeFromServer) * 1000) // => Fri Aug 17 2018 11:21:04 GMT+080
 
 ```js
 const Component = () => (
-<Query query={queryOrderFromServer}>
-  {({ data }) => {
-    // 從 GraphQL Server 拿到訂單的資料
-    const order = data.order;
-    return (
-      <div>
-        ...
-        <span>{formateBTC(order.currencyName)}</span> // 轉
-        <span>{formatDate(order.createTime)}</span> // 轉
-        ...
-      </div>
-    );
-  }}
-</Query>
+  <Query query={queryOrderFromServer}>
+    {({ data }) => {
+      // 從 GraphQL Server 拿到訂單的資料
+      const order = data.order;
+      return (
+        <div>
+          <span>{formateBTC(order.currencyName)}</span>
+          <span>{formatDate(order.createTime)}</span>
+        </div>
+      );
+    }}
+  </Query>
 );
 ```
 
@@ -115,26 +111,26 @@ const Component = () => (
 
 ```js
 class Streamer {
-   constructor(data) {
-     this.id = data.id;
-     this.name = data.name;
-     this.picture = data.picture;
-     this.gender = data.gender;
-   }
+  constructor(data) {
+    this.id = data.id;
+    this.name = data.name;
+    this.picture = data.picture;
+    this.gender = data.gender;
+  }
 
-   get pictureURL() {
-     if (!this.picture) return null;
-     return `https://example.com/images/${this.picture}`;
-   }
+  get pictureURL() {
+    if (!this.picture) return null;
+    return `https://example.com/images/${this.picture}`;
+  }
 
-   get displayedGender() {
-     return (
-       {
-         "0": "Male",
-         "1": "Female"
-       }[this.gender] || "Unknown"
-     );
-   }
+  get displayedGender() {
+    return (
+      {
+        "0": "Male",
+        "1": "Female"
+      }[this.gender] || "Unknown"
+    );
+  }
 }
 ```
 
@@ -144,26 +140,26 @@ class Streamer {
 import Streamer from "./models/Streamer";
 
 const streamerQuery = gql`
-query queryStreamer($id: Int!) {
-  stream(id: $id) {
-    id
-    name
-    picture
-    gender
+  query queryStreamer($id: Int!) {
+    stream(id: $id) {
+      id
+      name
+      picture
+      gender
+    }
   }
-}
 `;
 
 const streamerContainer = graphql(streamerQuery, {
-   options: props => ({ variables: { id: props.id } }),
-   props: ({ data }) => {
-     return {
-       transformedData: {
-         ...data,
-         stream: new Streamer(data.streamer) // 轉一波
-       }
-     };
-   }
+  options: props => ({ variables: { id: props.id } }),
+  props: ({ data }) => {
+    return {
+      transformedData: {
+        ...data,
+        stream: new Streamer(data.streamer) // 轉一波
+      }
+    };
+  }
 });
 
 export default streamerContainer;
@@ -177,7 +173,7 @@ export default streamerContainer;
 
 該 Query 的會像下方這個樣子：
 
-```
+```graphql
 query homepageData {
    topLiveRooms {
      # type TopLiveRoomList
@@ -212,38 +208,38 @@ query homepageData {
 
 我們用上方的 Query 去 GraphQL Server 拿資料，會得到如下方的 Response
 
-```
+```js
 const response = {
-   topLiveTooms: {
-     count: 23,
-     items: [
-       {
-         id: 1,
-         name: "天才的直播間",
-         streamer: {
-           id: "phyllis_genius",
-           name: "Phyllis",
-           picture: "<https://x.live/avatar/phyllis_genius.png>",
-           gender: 1
-         },
-         recommendedLiveRooms: {
-           items: [
-             {
-               name: "J 神的直播間",
-               streamer: {
-                 id: "jack_god",
-                 name: "The Jack",
-                 picture: "<https://x.live/avatar/jack_god.png>",
-                 gender: 0
-               }
-             }
-             // other items...
-           ]
-         }
-       }
-       // other items...
-     ]
-   }
+  topLiveTooms: {
+    count: 23,
+    items: [
+      {
+        id: 1,
+        name: "天才的直播間",
+        streamer: {
+          id: "phyllis_genius",
+          name: "Phyllis",
+          picture: "<https://x.live/avatar/phyllis_genius.png>",
+          gender: 1
+        },
+        recommendedLiveRooms: {
+          items: [
+            {
+              name: "J 神的直播間",
+              streamer: {
+                id: "jack_god",
+                name: "The Jack",
+                picture: "<https://x.live/avatar/jack_god.png>",
+                gender: 0
+              }
+            }
+            // other items...
+          ]
+        }
+      }
+      // other items...
+    ]
+  }
 };
 ```
 
@@ -252,25 +248,25 @@ const response = {
 大概會寫出如下的程式碼：
 
 ```js
- import Streamer from '../models/Streamer'
+import Streamer from "../models/Streamer";
 
- const transformedResponse = {
-   ...response,
-   topLiveRooms: {
-     ...response.topLiveRooms,
-     items: response.topLiveRooms.items.map(liveRoom => ({
-       ...liveRoom,
-       streamer: new Streamer(liveRoom.streamer),
-       recommendedLiveRooms: {
-         ...liveRoom.recommendedLiveRooms,
-         items: liveRoom.recommendedLiveRooms.items.map(recommendedLiveRoom => ({
-           ...recommendedLiveRoom,
-           streamer: new Streamer(recommendedLiveRoom.streamer)
-         }))
-       }
-     }))
-   }
- };
+const transformedResponse = {
+  ...response,
+  topLiveRooms: {
+    ...response.topLiveRooms,
+    items: response.topLiveRooms.items.map(liveRoom => ({
+      ...liveRoom,
+      streamer: new Streamer(liveRoom.streamer),
+      recommendedLiveRooms: {
+        ...liveRoom.recommendedLiveRooms,
+        items: liveRoom.recommendedLiveRooms.items.map(recommendedLiveRoom => ({
+          ...recommendedLiveRoom,
+          streamer: new Streamer(recommendedLiveRoom.streamer)
+        }))
+      }
+    }))
+  }
+};
 ```
 
 恩.... 醜到炸裂。
@@ -278,25 +274,25 @@ const response = {
 就算選擇用 `lodash.merge` 或忽略 immutability 的方式，也是一樣醜，而且也一樣難寫。
 
 ```js
-    import merge from "lodash/merge";
-    import Streamer from "../models/Streamer";
+import merge from "lodash/merge";
+import Streamer from "../models/Streamer";
 
-    const transformedResponse = merge({}, response, {
-      topLiveRooms: {
-        items: response.topLiveRooms.items(liveRoom =>
-          merge({}, liveRoom, {
-            streamer: new Streamer(liveRoom.streamer),
-            recommendedLiveRooms: {
-              items: liveRoom.recommendedLiveRooms.items.map(recommendedLiveRoom =>
-                merge({}, recommendedLiveRoom, {
-                  streamer: new Streamer(recommendedLiveRoom.streamer)
-                })
-              )
-            }
-          })
-        )
-      }
-    });
+const transformedResponse = merge({}, response, {
+  topLiveRooms: {
+    items: response.topLiveRooms.items(liveRoom =>
+      merge({}, liveRoom, {
+        streamer: new Streamer(liveRoom.streamer),
+        recommendedLiveRooms: {
+          items: liveRoom.recommendedLiveRooms.items.map(recommendedLiveRoom =>
+            merge({}, recommendedLiveRoom, {
+              streamer: new Streamer(recommendedLiveRoom.streamer)
+            })
+          )
+        }
+      })
+    )
+  }
+});
 ```
 
 另一種實作的方式是針對每一個 Schema 裡的 Type 在前端都建立一個 model
@@ -307,37 +303,37 @@ const response = {
 import Streamer from "./models/Streamer";
 
 class TopLiveRoomList {
-   constructor(data) {
-     Object.assign(this, data, {
-       items: data || data.items.map(item => new LiveRoom(item))
-     });
-   }
+  constructor(data) {
+    Object.assign(this, data, {
+      items: data || data.items.map(item => new LiveRoom(item))
+    });
+  }
 }
 
 class RecommendedLiveRoomList {
-   constructor(data) {
-     Object.assign(this, data, {
-       items: data || data.items.map(item => new LiveRoom(item))
-     });
-   }
+  constructor(data) {
+    Object.assign(this, data, {
+      items: data || data.items.map(item => new LiveRoom(item))
+    });
+  }
 }
 
 class LiveRoom {
-   constructor(data) {
-     Object.assign(this, data, {
-       streamer: data.streamer || new Streamer(data.streamer),
-       recommendedLiveRooms:
-         data.recommendedLiveRooms ||
-         new RecommendedLiveRoomList(data.recommendedLiveRooms)
-     });
-   }
+  constructor(data) {
+    Object.assign(this, data, {
+      streamer: data.streamer || new Streamer(data.streamer),
+      recommendedLiveRooms:
+        data.recommendedLiveRooms ||
+        new RecommendedLiveRoomList(data.recommendedLiveRooms)
+    });
+  }
 }
 
 const response = {
-/**... 略 ...**/
+  /**... 略 ...**/
 };
 const transformedResponse = {
-   topLiveRooms: new TopLiveRoomList(response.topLiveRooms)
+  topLiveRooms: new TopLiveRoomList(response.topLiveRooms)
 };
 ```
 
@@ -362,35 +358,35 @@ GraphQL 提供了一系列的 *[Introspection](https://graphql.org/learn/introsp
 Query:
 
 ```
-    query homepageData {
-      topLiveRooms {
-        items {
-          __typename
-          streamer {
-            __typename
-          }
-        }
+query homepageData {
+  topLiveRooms {
+    items {
+      __typename
+      streamer {
         __typename
       }
     }
+    __typename
+  }
+}
 ```
 
 Response:
 
 ```js
 const response = {
-   topLiveRooms: {
-     items: [
-       {
-         __typename: "LiveRoom",
-         streamer: {
-           __typename: "Streamer"
-         }
-       }
-       // ...
-     ],
-     __typename: "TopLiveRoomList"
-   }
+  topLiveRooms: {
+    items: [
+      {
+        __typename: "LiveRoom",
+        streamer: {
+          __typename: "Streamer"
+        }
+      }
+      // ...
+    ],
+    __typename: "TopLiveRoomList"
+  }
 };
 ```
 
@@ -419,8 +415,13 @@ const models = {
   }
 }
 const transform = createTransform(models)
+```
 
-// somewhere in the ui layer
+定義 Model 們後，依 Model 建立一個轉換函示 `transform`
+
+我們就可以在 UI 層的某個角落把 transform 函式套用在 response 上
+
+```
 <Query query={topLiveRoomsQuery}>
   {({ data }) => {
     const result = transform(data)
@@ -436,7 +437,7 @@ const transform = createTransform(models)
 
 ## 結語
 
-在寫類型之間有很多關係的 GraphQL 專案時，要如何漂亮的處理 UI 衍生資料時，真的很令人頭疼，在勉勉強強掙扎時，偶然靈光一閃 GraphQL 有提供 __typename，不就可以知道整體的結構了嗎，我寫那麼多判斷式是在...
+在寫類型之間有很多關係的 GraphQL 專案時，要如何漂亮的處理 UI 衍生資料很令人頭疼，偶然靈光一閃 GraphQL 有提供 `__typename`，不就可以知道整體的結構了嗎，我寫那麼多判斷式是在...
 
 寫完這個 library 後，開發 GraphQL 整個輕鬆多了呢
 
