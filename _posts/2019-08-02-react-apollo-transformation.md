@@ -22,7 +22,8 @@ categories:
   - [3. UI 所需的衍生資料](#3-ui-%e6%89%80%e9%9c%80%e7%9a%84%e8%a1%8d%e7%94%9f%e8%b3%87%e6%96%99)
   - [4. 沒有為什麼就是想改名](#4-%e6%b2%92%e6%9c%89%e7%82%ba%e4%bb%80%e9%ba%bc%e5%b0%b1%e6%98%af%e6%83%b3%e6%94%b9%e5%90%8d)
 - [如何在前端實作轉換？](#%e5%a6%82%e4%bd%95%e5%9c%a8%e5%89%8d%e7%ab%af%e5%af%a6%e4%bd%9c%e8%bd%89%e6%8f%9b)
-- [實作方式](#%e5%af%a6%e4%bd%9c%e6%96%b9%e5%bc%8f)
+- [（我覺得）正確的轉換方式](#%e6%88%91%e8%a6%ba%e5%be%97%e6%ad%a3%e7%a2%ba%e7%9a%84%e8%bd%89%e6%8f%9b%e6%96%b9%e5%bc%8f)
+- [實作](#%e5%af%a6%e4%bd%9c)
 - [結語](#%e7%b5%90%e8%aa%9e)
 
 ## 問題
@@ -343,7 +344,7 @@ const transformedResponse = {
 
 上述做法都有其缺點。
 
-##（我覺得）正確的轉換方式
+## （我覺得）正確的轉換方式
 
 會如此複雜的根本的原因是，我們必須完整暸解整個結構的形狀，到達待轉換目標的路徑，途經節點是否為空值、物件還是陣列。這對我們開發是一種負擔。
 
@@ -394,7 +395,7 @@ const response = {
 
 只要將整個 Response 樹遍歷，在存取各個節點時，去查找那個節點的 type 是不是有預先定義好的 model，如果有則使用 defineProperty 加上 getter，這樣就能把預先定義好的 model 套用上去，而且能夠適應各種不同的 response 結構，只需要定義 Model，然後就能享有轉換後的結果。
 
-## 實作方式
+## 實作
 
 我依照上方的概念，實作了一個 library [graphql-client-models](https://github.com/AnNOtis/graphql-client-models)
 
