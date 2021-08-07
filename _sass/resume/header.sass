@@ -1,3 +1,7 @@
++on-mobile
+  body
+    padding: bu()
+  
 #header
   +block-center($content-width)
   position: relative
@@ -39,24 +43,27 @@
   #left-block
     display: block
     position: relative
-    padding-left: bu()
     padding-right: bu()
     padding-top: bu()
     padding-bottom: 15px
     flex: 1 $content-width * 7/10
-    background-color: $c-main
     font-family: $font-family-sans-serif
     @media print
       -webkit-print-color-adjust: exact
     .name
-      color: #FDFDFD
-      font-size: 32px
+      color: $c-main
+      font-size: 40px
       line-height: 1
     .title
       font-size: $font-size-m
       font-weight: normal
       font-family: $font-family-code
-      color: $c-grey-light
+      color: #777
+    .sub-title
+      font-size: 13px
+      font-weight: normal
+      font-family: $font-family-code
+      color: #999
     .operation-bar
       display: inline-block
       position: absolute
@@ -89,14 +96,14 @@
       padding: 0
       padding-left: 20px
       margin: 0
-      flex-direction: column-reverse
+      flex-direction: column
       justify-content: center
       .info-item
         color: $c-grey
         font-family: $font-family-sans-serif
         a
-          color: $c-grey
-          text-decoration: none
+          color: $c-main
+          line-height: 2
           &:hover
             text-decoration: underline
         .fa
@@ -113,27 +120,32 @@
       width: auto
       min-height: bu(4)
       padding-top: bu(1)
-      padding-right: bu(6)
+      padding-right: bu(2)
       padding-bottom: 15px
-      border-bottom: 4px solid darken($c-main, 5)
-      .title
+      .title, .sub-title
         font-size: $font-size
       .operation-bar
         display: none
     #right-block
-      position: absolute
-      top: 0
-      right: 0
-      width: auto
-      height: 100%
+      display: flex
+      justify-content: left
+      align-items: center
       .info
         padding: 10px 15px
         padding-right: 30px
         background-color: transparent
         font-size: 12px
-        .info-item
-          color: $c-grey-light
-          a
-            color: $c-grey-light
-            &:hover
-              text-decoration: underline
+
+
++on-phone
+  #header
+    display: block
+    #left-block
+      width: 100%
+      padding: 0
+      text-align: center
+      padding-top: 16px
+    #right-block 
+      width: 100%
+      justify-content: center
+      text-align: center
